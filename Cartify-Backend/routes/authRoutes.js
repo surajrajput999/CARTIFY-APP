@@ -19,7 +19,8 @@ router.post('/send-otp', async (req, res) => {
         // User dhundho. Agar naya user hai, toh auto-create kar do (Bina password ke)
         let user = await User.findOne({ email });
         if (!user) {
-            user = new User({ name: 'Awesome User', email }); // Default name for new OTP users
+            const userCount = await User.countDocuments();
+            user = new User({ name: 'Awesome User', email, isAdmin: userCount === 0 });
         }
 
         // Generate 6-digit OTP (e.g. 482910)
@@ -94,7 +95,8 @@ router.post('/register', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const newUser = new User({ name, email, password: hashedPassword });
+        const userCount = await User.countDocuments();
+        const newUser = new User({ name, email, password: hashedPassword, isAdmin: userCount === 0 });
         await newUser.save();
 
         res.status(201).json({ message: "Account created successfully!" });
@@ -243,13 +245,15 @@ router.post('/google', async (req, res) => {
         let user = await User.findOne({ email });
 
         if (!user) {
+            const userCount = await User.countDocuments();
             const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
             const hashedPassword = await bcrypt.hash(generatedPassword, 10);
 
             user = new User({
                 name,
                 email,
-                password: hashedPassword
+                password: hashedPassword,
+                isAdmin: userCount === 0
             });
             await user.save();
         }
