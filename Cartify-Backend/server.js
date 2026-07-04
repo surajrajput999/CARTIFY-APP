@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
@@ -10,6 +11,7 @@ const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const addressRoutes = require('./routes/addressRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 const app = express();
 
@@ -54,6 +56,8 @@ app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/addresses', addressRoutes); // 👈 Connected Address API
 app.use('/api/payment', paymentRoutes); // 👈 Connected Payment API
+app.use('/api/upload', uploadRoutes); // 👈 Image Upload
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // 👈 Serve images
 
 // Test Route
 app.get('/', (req, res) => {

@@ -3,11 +3,33 @@ const router = express.Router();
 const Product = require('../models/Product');
 const { protect, admin } = require('../middleware/auth');
 
-// 1. GET API: Database se saare products lane ke liye
+// 1. GET API: Products with search, category filter & pagination
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find(); // Database se saare products dhundho
-        res.status(200).json(products); // Frontend ko bhej do
+        const { search, category, page, limit } = req.query;
+        const query = {};
+
+        if (search) {
+            query.title = { $regex: search, $options: 'i' };
+        }
+
+        if (category && category !== 'all') {
+            query.category = category;
+        }
+
+        const pageNum = parseInt(page) || 1;
+        const limitNum = parseInt(limit) || 12;
+        const skip = (pageNum - 1) * limitNum;
+
+        const products = await Product.find(query).skip(skip).limit(limitNum);
+        const total = await Product.countDocuments(query);
+
+        res.status(200).json({
+            products,
+            total,
+            page: pageNum,
+            pages: Math.ceil(total / limitNum)
+        });
     } catch (error) {
         res.status(500).json({ message: "Products lane mein error aayi", error });
     }
@@ -48,11 +70,21 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// 5. DELETE API: Ek click mein saara data saaf karne ke liye (Admin only)
+// 5. DELETE API: Saare products saaf karne ke liye (Admin only)
 router.delete('/clear', protect, admin, async (req, res) => {
     try {
-        await Product.deleteMany({}); // Yeh command database poora khali kar deti hai
+        await Product.deleteMany({});
         res.status(200).json({ message: "Database ekdum saaf ho gaya! 🧹✨" });
+    } catch (error) {
+        res.status(500).json({ message: "Delete karne mein error aayi", error });
+    }
+});
+
+// 6. DELETE API: Single product delete (Admin only)
+router.delete('/:id', protect, admin, async (req, res) => {
+    try {
+        await Product.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: "Product delete ho gaya! 🗑️" });
     } catch (error) {
         res.status(500).json({ message: "Delete karne mein error aayi", error });
     }

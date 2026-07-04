@@ -4,6 +4,7 @@ import { useCart } from '../context/cartContext';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, CreditCard, ShieldCheck, Loader2, CheckCircle } from 'lucide-react';
 import api from '../api/axios';
+import { RAZORPAY_KEY } from '../config';
 
 const CheckoutPage = () => {
   const { user } = useAuth();
@@ -74,7 +75,7 @@ const CheckoutPage = () => {
       });
 
       const options = {
-        key: "rzp_test_T8t3Mky8ruMagX", // ⚠️ APNI rzp_test_ WALI KEY YAHAN ZAROOR DALNA!
+        key: RAZORPAY_KEY,
         amount: order.amount,
         currency: "INR",
         name: "Cartify Premium",

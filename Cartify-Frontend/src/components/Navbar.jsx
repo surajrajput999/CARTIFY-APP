@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, User, Search, LogOut } from 'lucide-react'; // Added LogOut icon
+import { ShoppingCart, User, Search, LogOut, Shield } from 'lucide-react';
 import { useCart } from '../context/cartContext';
-import { useAuth } from '../context/authContext'; // 👈 Import the Auth Context
+import { useAuth } from '../context/authContext';
 
 const Navbar = () => {
   const { cart } = useCart();
@@ -75,6 +75,12 @@ const Navbar = () => {
                 </Link>
                 
                 {/* Logout Button */}
+                {user.isAdmin && (
+                  <Link to="/admin" className="text-gray-600 hover:text-teal-600 flex items-center gap-1.5 font-medium transition-colors" title="Admin">
+                    <Shield size={20} />
+                    <span className="hidden sm:inline">Admin</span>
+                  </Link>
+                )}
                 <button 
                   onClick={handleLogout} 
                   className="text-red-500 hover:text-red-700 flex items-center gap-1.5 font-medium transition-colors"

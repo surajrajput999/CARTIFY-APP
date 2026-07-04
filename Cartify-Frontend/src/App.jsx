@@ -1,12 +1,13 @@
 import CheckoutPage from './pages/CheckoutPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
+import AdminPage from './pages/AdminPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import CartPage from './pages/CartPage';
-import ProductDetailsPage from './pages/ProductDetailsPage'; // Naya page import kiya
+import ProductDetailsPage from './pages/ProductDetailsPage';
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-          {/* Naya Route jisme :id ek dynamic value hai */}
-          <Route path="/product/:id" element={<ProductDetailsPage />} /> 
+          <Route path="/product/:id" element={<ProductDetailsPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
         
       </div>

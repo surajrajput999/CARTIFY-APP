@@ -7,38 +7,49 @@ import ProductCard from '../components/ProductCard';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [pages, setPages] = useState(1);
+  const [page, setPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  
+  const [loading, setLoading] = useState(true);
+
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get('search') || ''; 
+  const searchQuery = searchParams.get('search') || '';
 
   useEffect(() => {
-    // URL ko clean kar diya gaya hai
-    api.get('/api/products')
-      .then((response) => setProducts(response.data))
-      .catch((error) => console.error("Data lane mein error:", error));
-  }, []);
+    setLoading(true);
+    const params = { page, limit: 12 };
+    if (selectedCategory !== 'all') params.category = selectedCategory;
+    if (searchQuery) params.search = searchQuery;
 
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-    
-    return matchesSearch && matchesCategory;
-  });
+    api.get('/api/products', { params })
+      .then((response) => {
+        setProducts(response.data.products);
+        setTotal(response.data.total);
+        setPages(response.data.pages);
+      })
+      .catch((error) => console.error("Data lane mein error:", error))
+      .finally(() => setLoading(false));
+  }, [page, selectedCategory, searchQuery]);
+
+  const handleCategoryChange = (cat) => {
+    setSelectedCategory(cat);
+    setPage(1);
+  };
 
   return (
     <main className="max-w-7xl mx-auto p-4 md:p-6 mt-4">
       <HeroBanner />
-      
+
       <div className="mt-12 mb-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex justify-center">
         <div className="flex flex-wrap gap-3 justify-center">
           {['all', 'electronics', 'clothing', 'footwear', 'accessories', 'furniture', 'beauty'].map((cat) => (
             <button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              onClick={() => handleCategoryChange(cat)}
               className={`px-5 py-2 rounded-full text-sm font-medium capitalize transition-colors ${
-                selectedCategory === cat 
-                  ? 'bg-teal-600 text-white shadow-md' 
+                selectedCategory === cat
+                  ? 'bg-teal-600 text-white shadow-md'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -55,14 +66,57 @@ const HomePage = () => {
           </h2>
           <div className="w-20 h-1 bg-teal-500 rounded mt-2"></div>
         </div>
+        {!loading && <span className="text-sm text-gray-500">{total} products found</span>}
       </div>
 
-      {filteredProducts.length > 0 ? (
+      {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product._id} product={product} />
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-gray-100 p-4 animate-pulse">
+              <div className="bg-gray-200 h-48 rounded-xl mb-4"></div>
+              <div className="bg-gray-200 h-4 w-3/4 rounded mb-2"></div>
+              <div className="bg-gray-200 h-4 w-1/2 rounded"></div>
+            </div>
           ))}
         </div>
+      ) : products.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {products.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
+
+          {pages > 1 && (
+            <div className="mt-10 flex justify-center items-center gap-2">
+              <button
+                onClick={() => setPage(p => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                Previous
+              </button>
+              {[...Array(pages)].map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setPage(i + 1)}
+                  className={`w-10 h-10 rounded-lg font-bold transition-colors ${
+                    page === i + 1 ? 'bg-teal-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+              <button
+                onClick={() => setPage(p => Math.min(pages, p + 1))}
+                disabled={page === pages}
+                className="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
           <h3 className="text-2xl font-bold text-gray-400 mb-2">Sorry, no results found! 🕵️‍♂️</h3>
