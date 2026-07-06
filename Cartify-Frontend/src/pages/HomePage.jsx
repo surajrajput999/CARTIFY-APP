@@ -22,11 +22,18 @@ const HomePage = () => {
     if (selectedCategory !== 'all') params.category = selectedCategory;
     if (searchQuery) params.search = searchQuery;
 
-    api.get('/api/products', { params })
+      api.get('/api/products', { params })
       .then((response) => {
-        setProducts(response.data.products);
-        setTotal(response.data.total);
-        setPages(response.data.pages);
+        const d = response.data;
+        if (Array.isArray(d)) {
+          setProducts(d);
+          setTotal(d.length);
+          setPages(1);
+        } else {
+          setProducts(d.products);
+          setTotal(d.total);
+          setPages(d.pages);
+        }
       })
       .catch((error) => console.error("Data lane mein error:", error))
       .finally(() => setLoading(false));

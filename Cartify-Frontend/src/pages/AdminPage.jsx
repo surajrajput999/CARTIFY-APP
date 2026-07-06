@@ -25,7 +25,7 @@ const AdminPage = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await api.get('/api/products', { params: { limit: 100 } });
-      setProducts(data.products);
+      setProducts(Array.isArray(data) ? data : data.products);
     } catch (err) {
       console.error('Failed to fetch products');
     } finally {
