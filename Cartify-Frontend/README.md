@@ -1,15 +1,15 @@
 <div align="center">
 
-# 🛒 Cartify
+# 🛒 Cartify — Frontend
 
-### A modern, fast & responsive e-commerce frontend built with React + Vite
+### React + Vite + Tailwind CSS — Part of the Cartify Monorepo
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cartifystore.vercel.app/)
+[![React](https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cartifly.vercel.app/)
 
-[🌐 Live Demo](https://cartifystore.vercel.app/) · [🐛 Report Bug](https://github.com/surajrajput999/cartify-frontend/issues) · [✨ Request Feature](https://github.com/surajrajput999/cartify-frontend/issues)
+🌐 **[Live App](https://cartifly.vercel.app/)** · 📁 **[Monorepo](https://github.com/surajrajput999/CARTIFY-APP)** · 🐛 **[Report Bug](https://github.com/surajrajput999/CARTIFY-APP/issues)**
 
 </div>
 
@@ -17,11 +17,9 @@
 
 ## 📖 About The Project
 
-**Cartify** is a sleek, modern e-commerce shopping cart frontend built from scratch using **React** and **Vite**, styled with **Tailwind CSS**. The goal of this project is to deliver a smooth, fast, and responsive shopping experience — clean product browsing, an interactive cart system, and a UI that feels production-ready.
+This is the **frontend** of **Cartify** — a premium full-stack e-commerce platform. Built with **React 19**, **Vite 8**, and **Tailwind CSS 4**, it delivers a smooth, fast, and responsive shopping experience with product browsing, cart management, multi-method authentication, and Razorpay payment integration.
 
-This is an original project (not a clone), built to sharpen frontend architecture, state management, and UI/UX skills as part of my MERN Stack development journey.
-
-> 🚧 Currently a frontend-only build — backend/API integration is on the roadmap!
+Part of the **Cartify Monorepo** — see the [root README](https://github.com/surajrajput999/CARTIFY-APP) for the full picture.
 
 ---
 
@@ -77,14 +75,14 @@ npm -v
 
 ### Installation
 
-1. **Clone the repository**
+1. **Clone the monorepo**
    ```bash
-   git clone https://github.com/surajrajput999/cartify-frontend.git
+   git clone https://github.com/surajrajput999/CARTIFY-APP.git
    ```
 
-2. **Navigate to the project folder**
+2. **Navigate to the frontend**
    ```bash
-   cd cartify-frontend
+   cd CARTIFY-APP/Cartify-Frontend
    ```
 
 3. **Install dependencies**
@@ -107,15 +105,17 @@ npm run build
 
 ---
 
-## 🗺️ Roadmap
+## ✅ What's Built
 
-- [ ] Backend integration (Node.js + Express + MongoDB)
-- [ ] User authentication (Login/Signup)
-- [ ] Product search & filters
-- [ ] Wishlist feature
-- [ ] Payment gateway integration
+- [x] Backend integration (Node.js + Express + MongoDB)
+- [x] User authentication (OTP, Password, Google OAuth)
+- [x] Product search & category filters
+- [x] Shopping cart (localStorage)
+- [x] Razorpay payment gateway
+- [x] Admin panel
+- [x] Full responsive design
 
-See the [open issues](https://github.com/surajrajput999/cartify-frontend/issues) for a full list of proposed features.
+See the [monorepo](https://github.com/surajrajput999/CARTIFY-APP) for backend code and full documentation.
 
 ---
 
@@ -137,7 +137,7 @@ Contributions, issues, and feature requests are welcome!
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/suraj-bhan-pratap-singh-891727293/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:surajdona2005@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/surajrajput999)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/surajrajput999/CARTIFY-APP)
 
 ---
 
