@@ -11,10 +11,10 @@
 [![Express](https://img.shields.io/badge/Express-4.19-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
 [![Razorpay](https://img.shields.io/badge/Razorpay-Payments-02042B?style=for-the-badge&logo=razorpay&logoColor=white)](https://razorpay.com/)
-[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cartifly.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cartify.vercel.app/)
 [![Render](https://img.shields.io/badge/Backend-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://cartify-api-10g3.onrender.com/)
 
-🌐 **[Live App](https://cartifly.vercel.app/)** · 📘 **[API Docs](#-api-endpoints)** · 🐛 **[Report Bug](https://github.com/surajrajput999/CARTIFY-APP/issues)** · ⭐ **[Star on GitHub](https://github.com/surajrajput999/CARTIFY-APP)**
+🌐 **[Live App](https://cartify.vercel.app/)** · 📘 **[API Docs](#-api-endpoints)** · 🐛 **[Report Bug](https://github.com/surajrajput999/CARTIFY-APP/issues)** · ⭐ **[Star on GitHub](https://github.com/surajrajput999/CARTIFY-APP)**
 
 ---
 
@@ -49,11 +49,11 @@
 
 ### 🏠 Home Page — Product Catalog
 
-![Home Page](Cartify-Frontend/screenshots/home.png)
+![Home Page](Frontend/screenshots/home.png)
 
 ### 🛍️ Trending Products Grid
 
-![Products Grid](Cartify-Frontend/screenshots/products.png)
+![Products Grid](Frontend/screenshots/products.png)
 
 </div>
 
@@ -126,7 +126,7 @@
 
 ```
 CARTIFY-APP/
-├── Cartify-Frontend/          # React + Vite frontend
+├── Frontend/          # React + Vite frontend
 │   ├── public/
 │   ├── screenshots/           # App screenshots
 │   ├── src/
@@ -142,7 +142,7 @@ CARTIFY-APP/
 │   ├── tailwind.config.js
 │   └── vercel.json
 │
-├── Cartify-Backend/           # Node.js + Express backend
+├── Backend/           # Node.js + Express backend
 │   ├── middleware/            # Auth middleware (JWT protect, admin)
 │   ├── models/               # Mongoose schemas
 │   ├── routes/               # 6 route files
@@ -189,16 +189,16 @@ git clone https://github.com/surajrajput999/CARTIFY-APP.git
 cd CARTIFY-APP
 
 # Install frontend dependencies
-cd Cartify-Frontend && npm install
+cd Frontend && npm install
 
 # Install backend dependencies
-cd ../Cartify-Backend && npm install
+cd ../Backend && npm install
 ```
 
 ### 2️⃣ Configure Backend
 
 ```bash
-cd Cartify-Backend
+cd Backend
 cp .env.example .env   # Fill in your credentials
 ```
 
@@ -215,7 +215,7 @@ Required environment variables:
 ### 3️⃣ Configure Frontend
 
 ```bash
-cd Cartify-Frontend
+cd Frontend
 ```
 
 Update `src/config.js` or create `.env`:
@@ -228,7 +228,7 @@ VITE_RAZORPAY_KEY=rzp_test_your_key
 ### 4️⃣ Seed Database (Optional)
 
 ```bash
-cd Cartify-Backend
+cd Backend
 node seedProducts.js
 ```
 
@@ -236,11 +236,11 @@ node seedProducts.js
 
 ```bash
 # Terminal 1 — Backend (http://localhost:5000)
-cd Cartify-Backend
+cd Backend
 npm run dev
 
 # Terminal 2 — Frontend (http://localhost:5173)
-cd Cartify-Frontend
+cd Frontend
 npm run dev
 ```
 
@@ -298,8 +298,8 @@ npm run dev
 
 | Detail | Value |
 |--------|-------|
-| **Live URL** | [https://cartifly.vercel.app](https://cartifly.vercel.app) |
-| **Root Directory** | `Cartify-Frontend` |
+| **Live URL** | [https://cartify.vercel.app](https://cartify.vercel.app) |
+| **Root Directory** | `Frontend` |
 | **Framework Preset** | Vite |
 | **Environment Variables** | `VITE_API_URL`, `VITE_RAZORPAY_KEY` |
 
@@ -308,7 +308,7 @@ npm run dev
 | Detail | Value |
 |--------|-------|
 | **Live URL** | [https://cartify-api-10g3.onrender.com](https://cartify-api-10g3.onrender.com) |
-| **Root Directory** | `Cartify-Backend` |
+| **Root Directory** | `Backend` |
 | **Build Command** | `npm install` |
 | **Start Command** | `npm start` |
 

@@ -7,9 +7,9 @@
 [![React](https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cartifly.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cartify.vercel.app/)
 
-🌐 **[Live App](https://cartifly.vercel.app/)** · 📁 **[Monorepo](https://github.com/surajrajput999/CARTIFY-APP)** · 🐛 **[Report Bug](https://github.com/surajrajput999/CARTIFY-APP/issues)**
+🌐 **[Live App](https://cartify.vercel.app/)** · 📁 **[Monorepo](https://github.com/surajrajput999/CARTIFY-APP)** · 🐛 **[Report Bug](https://github.com/surajrajput999/CARTIFY-APP/issues)**
 
 </div>
 
@@ -82,7 +82,7 @@ npm -v
 
 2. **Navigate to the frontend**
    ```bash
-   cd CARTIFY-APP/Cartify-Frontend
+    cd CARTIFY-APP/Frontend
    ```
 
 3. **Install dependencies**

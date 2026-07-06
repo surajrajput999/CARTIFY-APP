@@ -109,7 +109,7 @@ BREVO_API_KEY=xkeysib-your_brevo_api_key
 
 1.  **Clone & Navigate:**
     ```bash
-    cd Cartify-Backend
+    cd Backend
     ```
 
 2.  **Install Dependencies:**

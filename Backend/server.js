@@ -64,6 +64,9 @@ app.get('/', (req, res) => {
     res.send("Backend & Database are running perfectly! 🚀");
 });
 
+// Favicon route — browser har jagah favicon maangta hai, 404 na aaye isliye
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 // 🔍 DIAGNOSTIC 404 HANDLER - agar koi route match nahi hua to ye chalega
 app.use((req, res) => {
   console.log(`❌ No route matched for: ${req.method} ${req.originalUrl}`);
