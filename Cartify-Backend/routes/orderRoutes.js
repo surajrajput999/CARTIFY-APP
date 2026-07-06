@@ -47,7 +47,11 @@ router.post('/add', protect, async (req, res) => {
         res.status(201).json(savedOrder);
     } catch (error) {
         console.error("Error saving order:", error);
-        res.status(500).json({ message: "Failed to save the final order." });
+        res.status(500).json({ 
+            message: "Failed to save the final order.",
+            error: error.message,
+            details: error.errors ? Object.keys(error.errors).map(k => ({ field: k, msg: error.errors[k].message })) : undefined
+        });
     }
 });
 
