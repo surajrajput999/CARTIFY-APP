@@ -5,10 +5,6 @@ const path = require('path');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
-// Startup Diagnostics
-console.log("🔍 MONGO_URI set hai?", process.env.MONGO_URI ? "✅ Haan" : "❌ Nahi - Render Dashboard mein DAALO!");
-console.log("🔍 JWT_SECRET set hai?", process.env.JWT_SECRET ? "✅ Haan" : "❌ Nahi");
-
 // Import Routes
 const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -51,14 +47,8 @@ mongoose.connect(process.env.MONGO_URI)
     console.log("MongoDB Database Connected Successfully! 🗄️🎉");
   })
   .catch((error) => {
-    console.log("MongoDB Connection Error: ", error.message);
-    console.log("❌ Server band ho raha hai - MONGO_URI check karo Render Dashboard mein!");
-    process.exit(1);
+    console.log("MongoDB Connection Error: ", error);
   });
-
-mongoose.connection.on('disconnected', () => {
-  console.log("⚠️ MongoDB disconnected!");
-});
 
 // Setup API Routes
 app.use('/api/products', productRoutes);
@@ -71,11 +61,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // 👈 Se
 
 // Test Route
 app.get('/', (req, res) => {
-    res.send("Backend & Database are running perfectly! 🚀");
+   opencode res.send("Backend & Database are running perfectly! 🚀");
 });
-
-// Favicon route — browser har jagah favicon maangta hai, 404 na aaye isliye
-app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // 🔍 DIAGNOSTIC 404 HANDLER - agar koi route match nahi hua to ye chalega
 app.use((req, res) => {

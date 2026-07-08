@@ -31,7 +31,8 @@ router.get('/', async (req, res) => {
             pages: Math.ceil(total / limitNum)
         });
     } catch (error) {
-        res.status(500).json({ message: "Products lane mein error aayi", error });
+        console.error("❌ Products route error:", error.message);
+        res.status(500).json({ message: "Products lane mein error aayi" });
     }
 });
 
